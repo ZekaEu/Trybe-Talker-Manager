@@ -1,5 +1,13 @@
 const express = require('express');
 const { readFileSync } = require('fs');
+const {
+  tokenCheck,
+  nameCheck,
+  ageCheck,
+  talkCheck,
+  dateAndRateCheck,
+  addTalker,
+} = require('./createTalker');
 
 const talkerRouter = express.Router();
 
@@ -19,5 +27,13 @@ talkerRouter.get('/:id', (req, res) => {
   }
   res.status(200).json(talkerById);
 });
+
+talkerRouter.post('/',
+  tokenCheck,
+  nameCheck,
+  ageCheck,
+  talkCheck,
+  dateAndRateCheck,
+  addTalker);
 
 module.exports = talkerRouter;
