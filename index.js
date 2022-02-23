@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const talkerRouter = require('./middlewares/talkerRouter');
+const { emailCheck, passwordCheck, generateToken } = require('./middlewares/login');
 
 const app = express();
 app.use(bodyParser.json());
@@ -14,6 +15,7 @@ app.get('/', (_request, response) => {
 });
 
 app.use('/talker', talkerRouter);
+app.post('/login', emailCheck, passwordCheck, generateToken);
 
 app.listen(PORT, () => {
   console.log('Online');
