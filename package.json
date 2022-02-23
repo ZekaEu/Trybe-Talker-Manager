@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "npm run restore && jest --runInBand",
     "restore": "cp tests/seed.json talker.json",
     "start": "node index.js",
     "dev": "nodemon index.js --ignore 'talker.json'",
