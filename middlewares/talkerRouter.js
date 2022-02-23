@@ -8,6 +8,7 @@ const {
   dateAndRateCheck,
   addTalker,
 } = require('./createTalker');
+const updateTalker = require('./updateTalker');
 
 const talkerRouter = express.Router();
 
@@ -35,5 +36,13 @@ talkerRouter.post('/',
   talkCheck,
   dateAndRateCheck,
   addTalker);
+
+talkerRouter.put('/:id',
+  tokenCheck,
+  nameCheck,
+  ageCheck,
+  talkCheck,
+  dateAndRateCheck,
+  updateTalker);
 
 module.exports = talkerRouter;
