@@ -8,6 +8,7 @@ const {
   dateAndRateCheck,
   addTalker,
 } = require('./createTalker');
+const deleteTalker = require('./deleteTalker');
 const updateTalker = require('./updateTalker');
 
 const talkerRouter = express.Router();
@@ -29,20 +30,19 @@ talkerRouter.get('/:id', (req, res) => {
   res.status(200).json(talkerById);
 });
 
-talkerRouter.post('/',
-  tokenCheck,
-  nameCheck,
-  ageCheck,
-  talkCheck,
-  dateAndRateCheck,
-  addTalker);
+talkerRouter.use(tokenCheck);
 
-talkerRouter.put('/:id',
-  tokenCheck,
+talkerRouter.delete('/:id', deleteTalker);
+
+talkerRouter.use(
   nameCheck,
   ageCheck,
   talkCheck,
   dateAndRateCheck,
-  updateTalker);
+);
+
+talkerRouter.post('/', addTalker);
+
+talkerRouter.put('/:id', updateTalker);
 
 module.exports = talkerRouter;
